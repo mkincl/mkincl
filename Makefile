@@ -1,0 +1,1 @@
+include .mkincl/init.mk
