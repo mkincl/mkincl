@@ -4,6 +4,7 @@ INITS = $(wildcard $(MKINCL_DIR)/inits/*)
 .PHONY: init $(INITS)
 init: clean $(INITS)
 $(INITS):
+	@echo -- Initializing provider $@
 	. $(realpath $@) \
 	&& mkdir -p $(MKINCL_DIR)/providers \
 	&& git clone --quiet $$URL $(MKINCL_DIR)/providers/$$NAME \

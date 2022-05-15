@@ -1,6 +1,5 @@
 # An example mkincl include Makefile.
-MYDIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-NAME := $(shell basename $(MYDIR))
+NAME := mkincl
 VERSION := $(shell git branch --show-current)
 
 # Make provider specific targets dependencies to generic targets.
@@ -9,6 +8,14 @@ lint: lint-$(NAME)
 
 .PHONY: fix fix-$(NAME)
 fix: fix-$(NAME)
+
+# Container target
+IMAGE_REGISTRY := ghcr.io/carlsmedstad
+IMAGE_MKINCL := $(IMAGE_REGISTRY)/$(NAME):$(VERSION)
+
+.PHONY: enter-$(NAME)-container
+enter-$(NAME)-container:
+	docker run --rm --interactive --tty --pull always --volume "$$(pwd)":/pwd --workdir /pwd $(IMAGE_MKINCL)
 
 # Define the provider's actual targets.
 .PHONY: lint-$(NAME)-linter1 lint-$(NAME)-linter2
