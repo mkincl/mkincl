@@ -10,8 +10,7 @@ lint: lint-$(NAME)
 fix: fix-$(NAME)
 
 # Container target
-IMAGE_REGISTRY := ghcr.io/carlsmedstad
-IMAGE_MKINCL := $(IMAGE_REGISTRY)/$(NAME):$(VERSION)
+IMAGE_MKINCL := ghcr.io/mkincl/$(NAME):$(VERSION)
 
 .PHONY: enter-$(NAME)-container
 enter-$(NAME)-container:

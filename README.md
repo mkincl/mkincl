@@ -111,10 +111,10 @@ both Python code and shell scripts I could run:
 
 The providers I have created so far:
 
-* [mkincl-lua](https://github.com/carlsmedstad/mkincl-lua)
-* [mkincl-markdown](https://github.com/carlsmedstad/mkincl-markdown)
-* [mkincl-python](https://github.com/carlsmedstad/mkincl-python)
-* [mkincl-shell](https://github.com/carlsmedstad/mkincl-shell)
+* [lua-provider](https://github.com/mkincl/lua-provider)
+* [markdown-provider](https://github.com/mkincl/markdown-provider)
+* [python-provider](https://github.com/mkincl/python-provider)
+* [shell-provider](https://github.com/mkincl/shell-provider)
 
 Some of them are used in my [dotfile
 repository](https://github.com/carlsmedstad/dotfiles).
