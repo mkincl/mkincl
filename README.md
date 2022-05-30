@@ -86,8 +86,10 @@ repository](https://github.com/carlsmedstad/dotfiles).
 
 ### Provider Docker Image
 
-If you run all your CI jobs in the same Docker image, that image could be built
-in your provider repository and your provider could include something like:
+Building a Docker image in a provider repository can be a great way of
+constructing a reproducible environment for development tasks. This removes the
+need for installing tooling locally and will ensure developers are using the
+same versions of the tooling. This couples well with the following Make target:
 
 <!-- markdownlint-disable MD010 -->
 ```make
@@ -97,12 +99,43 @@ enter-$(NAME)-container:
 ```
 <!-- markdownlint-enable MD010 -->
 
-This would make it trivial for someone to replicate the CI environment locally
-by running:
+This target enables developers to easily enter the development environment by
+running:
 
-```make
-make enter-python-container
-make lint-python
+```sh
+make enter-<provider>-container
+```
+
+### Simple and Platform Agnostic CI/CD Jobs
+
+The feature mentioned above, building Docker images for each provider, can
+greatly simplify CI/CD pipelines. Instead of invoking the tooling directly,
+simply run in the image that the provider builds and invoke mkincl's Make
+targets.
+
+For example, a GitHub Actions job running [shfmt](https://github.com/mvdan/sh)
+and [shellcheck](https://github.com/koalaman/shellcheck) using my
+[shell-provider](https://github.com/mkincl/shell-provider) looks like this:
+
+```yaml
+jobs:
+  shell:
+    runs-on: ubuntu-latest
+    container: ghcr.io/mkincl/shell-provider:v1
+    steps:
+      - uses: actions/checkout@v2
+      - run: make init
+      - run: make lint-shell
+```
+
+This job is trivial to adapt for GitLab CI:
+
+```yaml
+lint-shell:
+  image: ghcr.io/mkincl/shell-provider:v1
+  script:
+    - make init
+    - make lint-shell
 ```
 
 ### Generic Targets
