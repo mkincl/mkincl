@@ -70,6 +70,18 @@ enter-mkincl-container  fix-mkincl-fixer1       lint                    lint-mki
 fix                     fix-mkincl-fixer2       lint-mkincl
 ```
 
+## Examples
+
+The providers I have created so far:
+
+* [lua-provider](https://github.com/mkincl/lua-provider)
+* [markdown-provider](https://github.com/mkincl/markdown-provider)
+* [python-provider](https://github.com/mkincl/python-provider)
+* [shell-provider](https://github.com/mkincl/shell-provider)
+
+Some of them are used in my [dotfile
+repository](https://github.com/carlsmedstad/dotfiles).
+
 ## Features
 
 ### Provider Docker Image
@@ -106,15 +118,3 @@ both Python code and shell scripts I could run:
 * `make lint` to run all linters.
 * `make lint-python` to run all linters for Python.
 * `make lint-shell` to run all linters for shell.
-
-## Examples
-
-The providers I have created so far:
-
-* [lua-provider](https://github.com/mkincl/lua-provider)
-* [markdown-provider](https://github.com/mkincl/markdown-provider)
-* [python-provider](https://github.com/mkincl/python-provider)
-* [shell-provider](https://github.com/mkincl/shell-provider)
-
-Some of them are used in my [dotfile
-repository](https://github.com/carlsmedstad/dotfiles).
