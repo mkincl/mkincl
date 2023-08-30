@@ -10,8 +10,8 @@ This reduced copy-pasted configuration and inconsistent practices across
 projects, but was difficult to run locally and resulted too much code in YAML
 files for my taste.
 
-_mkincl_ is an alternative approach which addresses these pain points, by relying
-on Makefiles. It provides a centralized and standardized interface to
+_mkincl_ is an alternative approach which addresses these pain points, by
+relying on Makefiles. It provides a centralized and standardized interface to
 development tools and processes while having a small footprint.
 
 ### Why Makefiles?
@@ -37,7 +37,7 @@ The minimum requirement for a provider is that it contains the Makefile
 
 A user must contain three things:
 
-1. The Makefile that contains the `clean` and `init` targets:
+1. The Makefile that contains the `clean-mkincl` and `init-mkincl` targets:
    [`.mkincl/init.mk`](.mkincl/init.mk). This file is completely generic and
    can be copied without modifications to new repositories.
 
@@ -56,16 +56,16 @@ checking out a project two targets are available:
 
 ```sh
 $ make <tab><tab>
-clean init
+clean-mkincl init-mkincl
 ```
 
-When running the `init` target, target providers will be fetched and after that
-all their targets will now be available:
+When running the `init-mkincl` target, target providers will be fetched and
+after that all their targets will now be available:
 
 ```sh
-$ make init --silent
+$ make init-mkincl --silent
 $ make <tab><tab>
-clean                   fix-mkincl              init                    lint-mkincl-linter1
+clean-mkincl            fix-mkincl              init-mkincl             lint-mkincl-linter1
 enter-mkincl-container  fix-mkincl-fixer1       lint                    lint-mkincl-linter2
 fix                     fix-mkincl-fixer2       lint-mkincl
 ```
@@ -124,7 +124,7 @@ jobs:
     container: ghcr.io/mkincl/shell-provider:v1
     steps:
       - uses: actions/checkout@v2
-      - run: make init
+      - run: make init-mkincl
       - run: make lint-shell
 ```
 
@@ -134,7 +134,7 @@ This job is trivial to adapt for GitLab CI:
 lint-shell:
   image: ghcr.io/mkincl/shell-provider:v1
   script:
-    - make init
+    - make init-mkincl
     - make lint-shell
 ```
 
