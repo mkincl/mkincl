@@ -46,7 +46,7 @@ A user must contain three things:
    targets.
 
 3. One or more provider initialization files such as the one in this project:
-   [`.mkincl/inits/mkinit.sh`](.mkincl/inits/mkincl.sh). These files specify
+   [`.mkincl/inits/mkincl.sh`](.mkincl/inits/mkincl.sh). These files specify
    the name, version and URL to a provider, where version is a Git ref and URL
    points to a Git repository.
 
